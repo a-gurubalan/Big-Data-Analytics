@@ -5,6 +5,7 @@ from app.modules.user_management import user_bp
 from app.modules.recommendations import recommendation_bp
 from app.modules.reports import reports_bp
 from app.modules.review import review_bp
+from app.modules.analytics import analytics_bp
 
 BASE_DIR = Path(__file__).resolve().parent
 
@@ -15,6 +16,7 @@ app = Flask(
 )
 
 
+app.register_blueprint(analytics_bp)
 app.register_blueprint(review_bp)
 app.register_blueprint(reports_bp)
 app.config["SECRET_KEY"] = "replace-this-with-a-random-secret"

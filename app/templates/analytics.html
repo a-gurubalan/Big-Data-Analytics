@@ -22,26 +22,34 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+    // Category chart data
     const categoryLabels = {{ category_labels | tojson }};
     const categoryValues = {{ category_values | tojson }};
 
+    // Review status data
     const statusLabels = {{ status_labels | tojson }};
     const statusValues = {{ status_values | tojson }};
 
+    // Category bar chart
     new Chart(document.getElementById("categoryChart"), {
         type: "bar",
+
         data: {
             labels: categoryLabels,
+
             datasets: [{
                 label: "Waste Records",
                 data: categoryValues
             }]
         },
+
         options: {
             responsive: true,
+
             scales: {
                 y: {
                     beginAtZero: true,
+
                     ticks: {
                         precision: 0
                     }
@@ -50,15 +58,19 @@
         }
     });
 
+    // Manual review doughnut chart
     new Chart(document.getElementById("statusChart"), {
         type: "doughnut",
+
         data: {
             labels: statusLabels,
+
             datasets: [{
                 label: "Review Status",
                 data: statusValues
             }]
         },
+
         options: {
             responsive: true
         }
