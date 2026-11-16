@@ -1,0 +1,15 @@
+{
+    "total_records": 1,
+    "categories": [
+        {
+            "label": "E-Waste",
+            "value": 1
+        }
+    ],
+    "statuses": [
+        {
+            "label": "Needs manual review",
+            "value": 1
+        }
+    ]
+}
