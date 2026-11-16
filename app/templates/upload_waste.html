@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-card">
+
+    <h1>Upload Waste Image</h1>
+
+    <p>Select an image to identify the waste category.</p>
+
+    <form method="POST" action="{{ url_for('user.upload_waste') }}" enctype="multipart/form-data">
+
+        <label>Select Waste Image</label>
+
+        <input type="file" name="waste_image" accept=".jpg,.jpeg,.png" required>
+
+        <button type="submit">Upload and Classify</button>
+
+    </form>
+
+</div>
+
+{% endblock %}

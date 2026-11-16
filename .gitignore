@@ -1,0 +1,37 @@
+
+# Python environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Private database
+database/*.db
+database/*.sqlite
+database/*.sqlite3
+
+# Uploaded images
+uploads/*
+!uploads/.gitkeep
+
+# Dataset images
+dataset/
+
+# AI model files
+ai_model/*.keras
+ai_model/*.h5
+ai_model/*.weights.h5
+
+# Generated analytics
+analytics/dashboard_data.json
+
+# Environment secrets
+.env
+
+# IDE files
+.vscode/
+.idea/
+
+# Temporary files
+*.log
+.DS_Store

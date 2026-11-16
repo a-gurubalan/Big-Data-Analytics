@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Admin Waste Review</h2>
+
+{% if records %}
+{% for item in records %}
+<div class="card">
+    <h3>Waste Record #{{ item["waste_id"] }}</h3>
+
+    <p><strong>User:</strong> {{ item["full_name"] or "Unknown" }}</p>
+    <p><strong>AI Prediction:</strong> {{ item["predicted_label"] or "Unclassified" }}</p>
+
+    <p><strong>Confidence:</strong>
+        {% if item["confidence_score"] is not none %}
+        {{ "%.2f"|format(item["confidence_score"] * 100) }}%
+        {% else %}
+        Not available
+        {% endif %}
+    </p>
+
+    <p><strong>Status:</strong> {{ item["review_status"] }}</p>
+
+    <form method="POST" action="{{ url_for('review.update_review', waste_id=item['waste_id']) }}">
+
+        <label>Confirm or correct category:</label>
+
+        <select name="category" required>
+            <option value="">Select category</option>
+            <option value="e_waste">E-Waste</option>
+            <option value="natural_waste">Natural Waste</option>
+        </select>
+
+        <button type="submit">Save Review</button>
+    </form>
+</div>
+{% endfor %}
+{% else %}
+<p>No waste records available.</p>
+{% endif %}
+
+{% endblock %}

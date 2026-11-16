@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Smart Recycling Recommendations</h2>
+
+{% if records %}
+{% for item in records %}
+<div class="card">
+    <h3>{{ item["predicted_label"] or "Unclassified" }}</h3>
+
+    <p>
+        <strong>Category:</strong>
+        {{ item["category_name"] or "Not mapped" }}
+    </p>
+
+    <p>
+        <strong>AI Confidence:</strong>
+        {% if item["confidence_score"] is not none %}
+        {{ "%.2f"|format(item["confidence_score"] * 100) }}%
+        {% else %}
+        Not available
+        {% endif %}
+    </p>
+
+    <p><strong>Review Status:</strong>
+        {{ item["review_status"] }}
+    </p>
+
+    {% if item["action_title"] %}
+    <h4>{{ item["action_title"] }}</h4>
+    <p>{{ item["instructions"] }}</p>
+    <p><strong>Disposal Method:</strong>
+        {{ item["disposal_method"] }}
+    </p>
+    {% else %}
+    <p>No recommendation available for this category.</p>
+    {% endif %}
+</div>
+{% endfor %}
+{% else %}
+<p>No waste records found. Upload a waste image first.</p>
+{% endif %}
+
+{% endblock %}

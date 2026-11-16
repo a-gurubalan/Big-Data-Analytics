@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-card">
+
+    <h1>Waste Recognition Result</h1>
+
+    {% if prediction %}
+
+    <h2>Predicted Category</h2>
+
+    <h2>{{ prediction }}</h2>
+
+    <p>AI Confidence: {{ confidence }}%</p>
+
+    {% else %}
+
+    <p>Image uploaded, but AI prediction failed.</p>
+
+    <p>{{ prediction_error }}</p>
+
+    {% endif %}
+
+    <p><strong>Status: Needs manual review</strong></p>
+
+    <a href="{{ url_for('user.upload_waste') }}">
+        Upload Another Image
+    </a>
+
+    <br><br>
+
+    <a href="{{ url_for('user.dashboard') }}">
+        Back to Dashboard
+    </a>
+
+</div>
+
+{% endblock %}
